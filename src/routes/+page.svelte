@@ -1,5 +1,6 @@
 <script>
 	import gsap from 'gsap';
+	import { onMount } from 'svelte';
 
 	/**
 	 * @param {HTMLElement} node
@@ -15,17 +16,26 @@
 			rotateZ: 45,
 			translateZ: 80,
 			ease: 'expo.out',
-			duration: 3,
-			delay: 1
+			duration: 3
 		});
 	}
+
+	let mounted = $state(false);
+
+	onMount(() => {
+		setTimeout(() => {
+			mounted = true;
+		}, 1000);
+	});
 </script>
 
 <div class="container">
-	<div class="letter" use:a>A</div>
+	{#if mounted}
+		<div class="letter" use:a>A</div>
+	{/if}
 </div>
 
-<div class="copyright">#tartin-catin</div>
+<div class="copyright">#tarte-catin</div>
 
 <style lang="scss">
 	.container {
