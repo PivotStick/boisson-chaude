@@ -112,6 +112,9 @@
 		justify-content: center;
 
 		.letter {
+			cursor: pointer;
+			user-select: none;
+
 			font-weight: 900;
 			font-size: 10rem;
 			transform: perspective(8rem);
