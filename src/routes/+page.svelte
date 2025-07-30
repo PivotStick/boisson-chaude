@@ -32,6 +32,8 @@
 	];
 
 	let currentLetter = $state(0);
+	/** @type {gsap.core.Tween} */
+	let currentIntro;
 
 	/**
 	 * @param {HTMLElement} node
@@ -48,6 +50,8 @@
 			ease: 'expo.out',
 			duration: 3
 		});
+
+		currentIntro = anim;
 
 		return {
 			duration: anim.duration() * 1000
@@ -69,6 +73,7 @@
 			ease: 'back.in',
 			duration: 1
 		});
+		currentIntro.kill();
 
 		return {
 			duration: anim.duration() * 1000
