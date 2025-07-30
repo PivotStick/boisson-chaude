@@ -1,2 +1,67 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script>
+	import gsap from 'gsap';
+
+	/**
+	 * @param {HTMLElement} node
+	 */
+	function a(node) {
+		const tl = gsap.timeline();
+
+		tl.from(node, {
+			opacity: 0,
+			scale: 0,
+			rotateX: 45,
+			rotateY: 45,
+			rotateZ: 45,
+			translateZ: 80,
+			ease: 'expo.out',
+			duration: 3,
+			delay: 1
+		});
+	}
+</script>
+
+<div class="container">
+	<div class="letter" use:a>A</div>
+</div>
+
+<div class="copyright">#tartin-catin</div>
+
+<style lang="scss">
+	.container {
+		display: flex;
+		height: 100dvh;
+
+		align-items: center;
+		justify-content: center;
+
+		.letter {
+			font-weight: 900;
+			font-size: 10rem;
+			transform: perspective(8rem);
+		}
+	}
+
+	.copyright {
+		cursor: pointer;
+
+		position: fixed;
+		bottom: 0.5rem;
+		right: 0.5rem;
+
+		text-decoration: underline;
+		font-style: italic;
+		opacity: 0.5;
+		font-size: 0.9rem;
+
+		transition-property: opacity;
+
+		&:hover {
+			opacity: 1;
+		}
+
+		&:active {
+			opacity: 0.25;
+		}
+	}
+</style>
