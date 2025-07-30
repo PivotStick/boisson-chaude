@@ -2,6 +2,37 @@
 	import gsap from 'gsap';
 	import { onMount } from 'svelte';
 
+	const letters = [
+		'A',
+		'B',
+		'C',
+		'D',
+		'E',
+		'F',
+		'G',
+		'H',
+		'I',
+		'J',
+		'K',
+		'L',
+		'M',
+		'N',
+		'O',
+		'P',
+		'Q',
+		'R',
+		'S',
+		'T',
+		'U',
+		'V',
+		'W',
+		'X',
+		'Y',
+		'Z'
+	];
+
+	let currentLetter = $state(0);
+
 	/**
 	 * @param {HTMLElement} node
 	 * @returns {import("svelte/transition").TransitionConfig}
@@ -55,7 +86,18 @@
 
 <div class="container">
 	{#if mounted}
-		<div class="letter" in:a_in out:a_out onclick={() => (mounted = false)}>A</div>
+		<div
+			class="letter"
+			in:a_in
+			out:a_out
+			onclick={() => (mounted = false)}
+			onoutroend={() => {
+				currentLetter = (currentLetter + 1) % letters.length;
+				mounted = true;
+			}}
+		>
+			{letters[currentLetter]}
+		</div>
 	{/if}
 </div>
 
