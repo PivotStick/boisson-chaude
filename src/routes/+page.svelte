@@ -4,11 +4,10 @@
 
 	/**
 	 * @param {HTMLElement} node
+	 * @returns {import("svelte/transition").TransitionConfig}
 	 */
-	function a(node) {
-		const tl = gsap.timeline();
-
-		tl.from(node, {
+	function a_in(node) {
+		const anim = gsap.from(node, {
 			opacity: 0,
 			scale: 0,
 			rotateX: 45,
@@ -18,6 +17,31 @@
 			ease: 'expo.out',
 			duration: 3
 		});
+
+		return {
+			duration: anim.duration() * 1000
+		};
+	}
+
+	/**
+	 * @param {HTMLElement} node
+	 * @returns {import("svelte/transition").TransitionConfig}
+	 */
+	function a_out(node) {
+		const anim = gsap.to(node, {
+			opacity: 0,
+			scale: 0,
+			rotateX: 45,
+			rotateY: -45,
+			rotateZ: 45,
+			translateZ: 80,
+			ease: 'back.in',
+			duration: 1
+		});
+
+		return {
+			duration: anim.duration() * 1000
+		};
 	}
 
 	let mounted = $state(false);
@@ -31,7 +55,7 @@
 
 <div class="container">
 	{#if mounted}
-		<div class="letter" use:a>A</div>
+		<div class="letter" in:a_in out:a_out onclick={() => (mounted = false)}>A</div>
 	{/if}
 </div>
 
