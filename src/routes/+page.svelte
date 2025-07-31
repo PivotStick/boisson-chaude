@@ -7,8 +7,8 @@
 	import desk_03 from './tarte-catin/desk_03.jpeg';
 	import desk_04 from './tarte-catin/desk_04.jpeg';
 
-	import ext_01 from './tarte-catin/ext_01.jpeg';
-	import ext_02 from './tarte-catin/ext_02.jpeg';
+	// import ext_01 from './tarte-catin/ext_01.jpeg';
+	// import ext_02 from './tarte-catin/ext_02.jpeg';
 	import ext_03 from './tarte-catin/ext_03.jpeg';
 
 	import one_hand_01 from './tarte-catin/one_hand_01.jpeg';
@@ -18,6 +18,8 @@
 	import two_hands_01 from './tarte-catin/two_hands_01.jpeg';
 	import two_hands_02 from './tarte-catin/two_hands_02.jpeg';
 	import two_hands_03 from './tarte-catin/two_hands_03.jpeg';
+	import { fly } from 'svelte/transition';
+	import { expoOut } from 'svelte/easing';
 
 	/**
 	 * @param {HTMLElement} node
@@ -102,6 +104,9 @@
 		await tick();
 		transition = false;
 	}
+
+	let count = $state(0);
+	let dir = $state(0);
 </script>
 
 {#if product}
@@ -141,6 +146,36 @@
 					</div>
 					<span class="leo">(gratuit pour Léonore)</span>
 				</div>
+			</div>
+
+			<div class="add">
+				<button
+					onclick={(e) => {
+						e.preventDefault();
+						count = Math.max(0, count - 1);
+						dir = -1;
+					}}
+					aria-label="Enlever produit"><iconify-icon icon="fa6-solid:minus"></iconify-icon></button
+				>
+				<span>
+					{#key count}
+						<div
+							class="n"
+							in:fly={{ easing: expoOut, y: -30 * dir, duration: 1200 }}
+							out:fly={{ easing: expoOut, y: 30 * dir, duration: 1200 }}
+						>
+							{count}
+						</div>
+					{/key}
+				</span>
+				<button
+					onclick={(e) => {
+						e.preventDefault();
+						count++;
+						dir = 1;
+					}}
+					aria-label="Ajouter produit"><iconify-icon icon="fa6-solid:plus"></iconify-icon></button
+				>
 			</div>
 
 			<p>
@@ -281,7 +316,6 @@
 				display: flex;
 				justify-content: space-between;
 				margin-top: 1rem;
-				margin-bottom: 2rem;
 
 				h1 {
 					line-height: 1;
@@ -298,6 +332,30 @@
 							font-size: 0.6em;
 							font-weight: 400;
 						}
+					}
+				}
+			}
+
+			.add {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-top: 2rem;
+				margin-bottom: 2rem;
+				user-select: none;
+
+				span {
+					display: block;
+					font-weight: 900;
+					font-size: 1.2rem;
+
+					position: relative;
+
+					.n {
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						translate: -50% -50%;
 					}
 				}
 			}
