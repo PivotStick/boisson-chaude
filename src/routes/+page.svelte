@@ -251,6 +251,7 @@
 
 			height: 100%;
 			overflow: auto;
+			z-index: 0;
 
 			.top {
 				margin-bottom: 1rem;
@@ -313,9 +314,15 @@
 			}
 
 			.head {
+				z-index: 2;
 				display: flex;
 				justify-content: space-between;
-				margin-top: 1rem;
+				padding-top: 1rem;
+
+				position: sticky;
+				top: -1rem;
+
+				background-color: white;
 
 				h1 {
 					line-height: 1;
@@ -337,6 +344,8 @@
 			}
 
 			.add {
+				z-index: -1;
+
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
