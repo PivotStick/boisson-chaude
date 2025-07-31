@@ -117,7 +117,7 @@
 					<iconify-icon icon="fa6-solid:arrow-left"></iconify-icon>
 				</button>
 
-				<p class="primary-font title">Boisson Chaude</p>
+				<p class="primary-font title">~ Boisson Chaude ~</p>
 
 				<button aria-label="Panier">
 					<iconify-icon icon="fa6-solid:basket-shopping"></iconify-icon>
