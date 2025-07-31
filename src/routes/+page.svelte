@@ -120,10 +120,17 @@
 			</div>
 
 			<div class="img-container">
-				<img src={two_hands_03} alt="" />
+				<iconify-icon icon="fa6-solid:hand-point-right"></iconify-icon>
 				<img src={desk_03} alt="" />
+				<img src={desk_01} alt="" />
+				<img src={desk_02} alt="" />
+				<img src={desk_04} alt="" />
+				<img src={two_hands_03} alt="" />
+				<img src={two_hands_01} alt="" />
+				<img src={two_hands_02} alt="" />
 				<img src={one_hand_01} alt="" />
-				<img src={ext_01} alt="" />
+				<img src={one_hand_02} alt="" />
+				<img src={one_hand_03} alt="" />
 			</div>
 
 			<div class="head">
@@ -231,10 +238,14 @@
 				bottom: 0;
 
 				height: 5rem;
+				pointer-events: none;
 			}
 
 			.img-container {
+				position: relative;
+
 				width: 100%;
+				height: 80%;
 				border-radius: 0.75rem;
 				overflow: auto;
 
@@ -242,6 +253,19 @@
 
 				background-color: #eee;
 				scroll-snap-type: x mandatory;
+
+				iconify-icon {
+					position: absolute;
+					opacity: 0.8;
+					color: white;
+
+					top: 0.75rem;
+					right: 1rem;
+
+					font-size: 1.5rem;
+
+					animation: hithere 2000ms ease infinite;
+				}
 
 				img {
 					flex-shrink: 0;
@@ -332,6 +356,26 @@
 
 				translate: -50% 35%;
 			}
+		}
+	}
+
+	@keyframes hithere {
+		30% {
+			transform: scale(1.2);
+		}
+		40%,
+		60% {
+			transform: rotate(-20deg) scale(1.2);
+		}
+		50% {
+			transform: rotate(20deg) scale(1.2);
+		}
+		70% {
+			transform: rotate(0deg) scale(1.2);
+		}
+		80%,
+		100% {
+			transform: scale(1);
 		}
 	}
 </style>
